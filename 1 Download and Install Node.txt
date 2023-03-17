@@ -1,0 +1,96 @@
+*** Download Node
+	
+->goto-	https://nodejs.org/en/
+
+->Click on - LTS:
+		long term support 
+		stable version
+->Click on downloaded file.
+
+->Select next, next...finish
+
+->Node is Installed...!!!
+-------------------------------------------------------
+
+*** Create Node Project
+
+->Create folder
+->Open Cmd in that folder/ open vs code 
+
+->vs code :
+
+	right click on folder->open integrated terminal -> (default cmd)
+	->"node"	(to check if installed)
+
+	->"npm init"
+		just press enter
+
+	->entry point : app.js
+
+	->now "package.json" file is created inside our folder(project).
+
+-->Node Project is created...!!!
+
+---------------------------------------------------------------------------------
+
+**** Run Hello World IN Node Project.
+
+->Create file named as app.js (or any name)
+
+->console.log('hello')
+
+->in terminal/cmd type 
+	
+	"node app.js"
+
+->Hello is printed in console...!!!
+
+
+---------------------------------------------------------------------------------------
+
+
+*** INstall Nodemon
+
+-every time we make changes in code we need to run application using node app.js,
+  to restart application automatically Install nodemon.
+
+->cmd/terminal
+	
+	 "npm i -g nodemon"
+
+->now to run application
+	
+	"nodemon app.js"
+
+->Now Application will be restarted on chnages...!!!
+
+----------------------------------------------------------------------------------------
+
+** Read Documentation of npm init at :- https://expressjs.com/en/starter/installing.html
+
+
+* what is node js?
+to runjs file ouside of browser.
+
+* what is package.json file ?
+	 -keeps coding related details of our project. eg version, name, repo, description etc
+	 -created when we initialize the directory 
+		using "npm init".
+
+* What is package-lock.json file?
+	-it keeps the details of installed packages in our project.
+
+
+--to run application 
+	in terminal type: "node app.js"
+
+--to autostart on change
+	
+	"nodemon app.js"
+
+----------------------------------------------------------------------------------------
+NOTE  : to run node application, we can use "npm start" or "node app.js/ nodemon app.js (if nodemon inatlled)".
+	
+	difference is :
+----------------------------------------------------------------------------------------
+

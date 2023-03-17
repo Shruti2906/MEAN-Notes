@@ -1,0 +1,380 @@
+LTS:
+long term support 
+	stable version
+
+command
+
+vs code :
+
+right click on folder->open integrated terminal -> (default cmd)
+->node	(to check if installed)
+
+->npm init
+	just press enter
+
+->entry point : app.js
+
+->now "package.json" file is created inside out folder(project).
+
+
+** Read Documentation of npm init at :- https://expressjs.com/en/starter/installing.html
+
+
+* what is node js?
+to runjs file ouside of browser.
+
+* what is package.json file ?
+	 -keeps coding related details of our project. eg version, name, repo, description etc
+	 -created when we initialize the directory 
+		using "npm init".
+
+* What is package-lock.json file?
+	-it keeps the details of installed packages in our project.
+
+
+--to run application 
+	in terminal type: "node app.js"
+
+**const keyword in js
+
+**let, const variable
+		let   			vs	 const
+	-re initialization is allowed 		re-initialisation is not allowed
+	-both have block scope.
+
+
+
+// const a; //not allowed to use before initiailzation
+//let a;// allowed to used before initialization
+// console.log(a)
+
+// let a, b=20
+// console.log(a+b)
+
+
+------------------------------------------
+
+**normal function, arrow function
+
+function funct(){
+  console.log('get hello')
+}
+
+const helloo = () => {
+  console.log('hlooo');
+}
+helloo()
+
+- reduced syntax.
+------------------------------------------
+
+**passing fun as parameter.
+
+add = (num1, num2) => {
+
+  console.log(num1+num2);
+}
+
+function calc(param){
+  param(10, 20);
+}
+
+calc(add);
+
+
+--------------
+function as parameter
+-------------
+var a = 10;
+var b = 20;
+
+console.log(a+b);
+
+hello()
+function hello(){
+    console.log("Hello")
+}
+
+hello2()
+const a = () => {
+    console.log("Hello")
+}
+
+const calc = (param) =>{
+    return param(10, 20);
+}
+
+const add = (num1, num2) => {
+    return num1+num2;
+}
+
+const result = calc(add);
+console.log(result);
+
+const result2 = calc( {})
+
+
+const hello = ()=> {
+
+}
+
+const exec = (fun1) => {
+    fun1();
+}
+
+exec(hello);
+
+-----------------------------
+cmd->right click->js debug terminal->
+
+-----------------------------
+
+server
+http
+
+
+open folder in vs code->
+
+create backend
+->
+
+------------------------------------------------------
+*** Install Express Js ***
+
+	npm install express --save
+
+-express is a package
+
+
+const fun = () => {
+    console.log('fun called');
+}
+
+const fun2 = (fun)=>{
+    console.log('in fun2 ');
+    fun();
+}
+
+fun2(fun);
+
+----------
+callback
+----------
+
+restart automatically:
+
+	npm i -g nodemon
+
+"start": "node app.js",
+"start": "nodemon app.js",
+
+
+-----------------------
+
+hw:
+delete
+put
+
+post - should not add with same(existing) id
+------------------------java const vs final
+
+===========================================Day 2, 11 march 23================================================
+
+dir
+
+* to install angular cli :
+
+	npm i -g @angular/cli
+	
+	-'npm' stands for node package manager.
+	-'i' stands for install.
+	-'-g' stands for global.(as we are globally installing angular cli)
+
+
+* to check version of angular cli installed:
+
+	ng version
+
+	-ng is angular cli itself
+
+
+* To create an angular project :
+
+	npm init @angular frontend
+
+* to run project:
+	
+	ng serve
+	ng serve --open	
+		-to run and open on browser(default pot no is 4200).
+
+
+* frontend and backend are not related they will communicate through http req, res.
+
+
+
+for backend:
+nodemon app.js
+
+delete spec.ts
+-used for testing
+
+component:
+is a class
+has 3 files html,css ,ts
+
+******* Project Stucture : 
+
+angular.json file:
+main file of angular application
+
+
+* ".gitignore"
+	-conatins names of filed and folder that we do not want in our 
+	source control.
+	
+
+
+* editor config:
+	-this is configuration file for vs code.
+	-we can add  manual cnofiguration here.
+
+
+* package.json
+	-contains all dependencies for our project
+	-dependencies(must for project) and devDependencies
+	-inside scripts we can see start property
+	e.g start: "ng serve --open" (in case of angular);
+	    start: "nodemon app.js" (in case of node);
+	
+
+* node_modules :
+	-all dependencies and devDependencies are installed in this folder.
+	
+
+* assets
+	images etc
+
+* index.html:
+	-this is the first file that will run on your browser.
+
+* main.ts:
+	-its a bridge between html and angular.
+
+* style.css:
+	-global css
+
+* package-lock.json:
+	-contails details about dependencies and devDependences
+	e.g on which dependencies this dependencies are dependent.
+
+
+*angular.json:
+	-i18n
+
+* tsconfig files:
+
+will there be any impact if you delete package-lock.json?
+	no there will be no impact.
+	-whenever you run npm install this file will be generated automatically.
+
+attribute of component
+
+built of any api
+
+minificaion-part of building process
+
+npm  run start
+
+angular.js file : i18n
+	internationalization-multi lanuguafe support
+
+
+project structure is decided  in angular.json
+
+ts file:
+buisness logic
+-main file
+in ts
+id: number = 1;
+-----
+enterprize level application
+-----
+ts compilation - .js file
+
+what is in typescrpit
+-is compiled
+	-can give compile type error.
+
+to bind class with html
+
+a-ngmodel - autocomplete
+
+-------------
+extension : angular essesntials
+-------------
+
+** ng module is module of angular
+
+app.module.ts:
+imports
+
+
+string interpolation-ts to html display{{}}
+
+app.component.html
+Id :   <input [(ngModel)]="employee.id" type="number"><br>
+Name : <input [(ngModel)]="employee.name" type="text"><br>
+<button (click)="addEmp()">add Emp</button>
+
+<br>
+<br>
+{{employee.id}}
+{{employee.name}}
+
+
+
+{{name}}
+{{employee.id}}
+<input type="text" value="{{name}}">
+<input type="text" value="name">
+<input type="text" [value]="name" (keyup)="changed()">
+<!-- check for property named as 'name' -->
+<!--[] ts to html-->
+<!--() html to ts-->
+
+
+
+frontend to backend send data
+
+------------------------------------------------------------------------
+To do:
+	structure of project angular and node in detail.
+	component
+-------------------------------------------
+
+	git status
+
+	git restore .
+
+	git remote add origin https://github.com/Shruti2906/emp-front-end.git
+		
+	git push -u origin master
+
+note: by defualt local repo is crerated for frontend folder.
+	by default local repo is not created for backend folder.
+	
+
+expalin generic type
+
+cors policy
+
+app.compnent.ts
+app.component.html
+CRUD	
+
+
+
+NG ONINT
+
+

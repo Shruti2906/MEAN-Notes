@@ -1,0 +1,32 @@
+
+** to install angular cli :
+
+	npm i -g @angular/cli
+	
+	-'npm' stands for node package manager.
+	-'i' stands for install.
+	-'-g' stands for global.(as we are globally installing angular cli)
+
+
+** to check version of angular cli installed:
+
+	ng version
+
+	-ng is angular cli itself
+
+
+** To create an angular project :
+
+	npm init @angular frontend
+
+** to run project:
+	
+	ng serve
+	ng serve --open	
+		-to run and open on browser(default pot no is 4200).
+
+
+** NOTE: frontend and backend are not related they will communicate through http req, res.
+
+
+->Thus We have Installed Angular cli and executed/run in browser defuault/welcome/hello world page.

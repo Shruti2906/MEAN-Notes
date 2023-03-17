@@ -1,0 +1,51 @@
+What is Interpolation?
+How to use it?
+What we can do with Interpolation?
+What we can Not do with Interpolation?
+Interview Question?
+
+
+
+
+Interpolation is used for displaying dynamic data on our html page.
+
+-dynamic data is data in component.ts file, 
+-It's called dynamic data because it may be coming from local storage, api, etc.
+-and if we want to display this data onto our html file that time we use Interpolation.
+
+-synatx:
+	{{title}}
+	{{obj.title}}
+	{{fun()}}
+	{{10+20}}
+	{{a+b}}
+	{{num == 100}}//op: true or false 
+
+** What We cannot do with Interpolation ?
+
+	-We cannot assign value. {{n = 10}}
+	-We cannot use  typeof(). {{typeof(n)}}
+	-We cannot make here new property. i.e we cannot use new keyword here.
+	{{new num}}
+
+	-{{num+100}} is OK, but
+	-we cannot add incremental/decreamental values here. {{num++}}
+
+
+
+
+---------------------------------------------------------------
+See Next Two Way Binding
+---------------------------------------------------------------
+-
+{{name}}
+{{employee.id}}
+<input type="text" value="{{name}}">
+<input type="text" value="name">
+<input type="text" [value]="name" (keyup)="changed()">
+<!-- check for property named as 'name' -->
+<!--[] ts to html-->
+<!--() html to ts-->
+
+
+

@@ -1,0 +1,72 @@
+To Transfer data from our html to ts file and ts to html file.
+This is required as we may need to dynamically change data of our html page.
+this data will be coming from ts file. in ts file it will be coming form api, local storage etc.
+
+for ts to html we need to use 
+	Property binding
+
+for html to ts we need to use 
+	Event binding
+
+	
+
+
+** Property binding (ts to html- one directional) : 
+
+	<input type="text" [value]="name">
+
+** Event Binding for (html to ts - one directional) : 
+	
+	<input type="text" [value]="name" (keyup)="changed()">	
+	
+	in component(i.e i ts file) :
+		function  changed(){
+			name=""
+		}
+
+		OR
+
+	<input type="text" [value]="name" (keyup.enter)="name=$event.target.value">		
+
+
+Above approach is not good as we have written messy code.	
+
+We have special directive ng model for 2 way binding and much cleaner code.
+
+	<input type="text" [(ngModel)]="name">
+	{{name}}	<!--to print value of name-->
+
+
+NOTE : to use ng model we need to add formsModule.
+	as ngModel directive is in module formsModule.
+
+	->for this first goto
+		 app.module.ts
+
+	->import formsModule ->
+		 "import { FormsModule } from '@angular/forms';"
+
+	->Register it inside the imports -> 
+			   "imports: [ BrowserModule,
+			    AppRoutingModule,
+			    FormsModule
+			    ]"
+-------------------------------------------------------------------------------------
+
+{{name}}
+{{employee.id}}
+<input type="text" value="{{name}}">
+<input type="text" value="name">
+<input type="text" [value]="name" (keyup)="changed()">
+<!-- check for property named as 'name' -->
+<!--[] ts to html-->
+<!--() html to ts-->
+
+
+<div *ngFor =  " let emp of employees">
+{{emp.id}}
+{{emp.name}}
+</div>
+
+
+ngFor is a structural directive.

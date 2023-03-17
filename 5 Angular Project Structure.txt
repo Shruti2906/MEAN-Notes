@@ -1,0 +1,79 @@
+
+******* Project Stucture : 
+
+* ".gitignore"
+	-conatins names of files and folder that we do not want in our 
+	source control.
+	
+
+
+* editorconfig:
+	-this is configuration file for vs code.
+	-we can add  manual configuration here.
+
+
+* package.json
+	-contains all dependencies for our project
+	-dependencies(must for project) and devDependencies
+	-inside scripts we can see start property
+	e.g start: "ng serve --open" (in case of angular);
+	    start: "nodemon app.js" (in case of node);
+
+* node_modules :
+	-contains all modules that we install in this project.
+	-all dependencies and devDependencies that we add in our project are installed in this folder.
+
+* src Folder:
+	-contains all components etc. all projects will be here except a few configuration.
+	
+	* app :
+		-contains component.
+
+	* assets:
+		-all assets
+			images etc.
+	
+	* index.html:
+		-this is index file it will run on browser.
+			(browser run only tndex.html page other pages will be loaded by a href)
+	
+	* main.js:
+		-bootstrap angular project over html file.
+		-connect html and angular.
+
+	*style.css:
+		-You can add global styles to this file, and also import other style files 
+
+* package-lock.json:
+	-contails details about dependencies and devDependences
+	e.g on which dependencies this dependencies are dependent.
+
+	-contains details about dependencies and dependencies using other/internal dependencies.
+
+*angular.json:
+	-important  file.
+	-it's a configuration file.
+	-i18n
+	-project structure is decided  in angular.json
+
+* tsconfig files:
+	-typescript related details.
+	
+	* tsconfig.app.json :
+		-app related configuration.
+	
+	* tsconfig.json :
+		-global configuration.
+
+	* tsconfig.spect.json :
+		-ts file testing related configuration details.
+
+-----------------------------------
+will there be any impact if you delete package-lock.json?
+	no there will be no impact.
+	-whenever you run npm install this file will be generated automatically.
+
+--------------------------------------
+
+TO Search
+	angular.json

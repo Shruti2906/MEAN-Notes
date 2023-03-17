@@ -1,0 +1,100 @@
+HTTP, Observabales and RxJS
+-----------------------------------
+
+1. HTTP Get request from node api.
+2. Receive the observable. (can cast into an employee array.)
+3. Subscribe to the observable from EmpList and EmpDetail.
+4. Assign the employee array to a local variable.
+
+
+Till angular 4 we were using httpModule.
+	since angular 5 we are using HttpClient Module.
+	
+	-HttpClient Module provides simplified api for http functionality.
+
+
+->import HttpModule in app.module.ts ->
+
+		import { HttpClientModule} from '@angular/common/http';
+	
+->Register Http service with angular injector. i.e add in imports
+		 imports: [
+		    BrowserModule,
+		    AppRoutingModule,
+		    FormsModule,
+		    HttpClientModule
+		 ]
+
+->To use http in our component class, We Declare It As Dependency in the Constructor
+	in "export class AppComponent{ }"
+	
+	constructor(private http: HttpClient){
+
+  	}
+
+	-now we have local variable http that will hold the instance of HttpClient
+
+
+->To execute on start we'll use ngOnInit() for that we need to Implement OnInit Interface.
+	thus,
+
+	export class AppComponent implements OnInit{
+		constructor(private http: HttpClient){}
+	}
+	ngOnInit(): void {
+		
+	}
+
+->We'll use get method of http : 
+	
+	this.http.get("http://localhost:3000/get").subscribe((res: any) => {}).
+	
+	-in typescript we need to use this for refering variables.
+	-http is local variable that hold HttpClient Object.
+	-get() is method of http that we're calling using dot (.) operator.
+	-we need to pass url of the web server to get method.
+		we've node running on port 3000.
+	
+	-get() Method of http returns type "Observable".
+
+
+
+------------------------
+
+app.component.ts file : 
+
+
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit{
+
+  name = "my title"
+
+  employees: any[] = [];
+  constructor(private http: HttpClient){
+
+  }
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
+    this.http.get("http://localhost:3000/get").subscribe((res: any) => {
+      console.log('res', res);
+      this.employees = res;
+
+    }, (err: any)=>{
+      console.log('error',err)
+
+    })
+  }
+}
+
+------------------------
+what is subscribeing to observable
+	-to receive data we need to subscribe to observable.
+	after subscribing to the observable data arrives asynchronously.
+
