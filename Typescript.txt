@@ -1,0 +1,182 @@
+
+What is typescript?
+Why do we need it?
+How is it different from javascript?
+
+
+Typescript :
+	-is a programming language created at microsoft to adress some of the shortcomes of javascript.
+	-ts is created on top of javascript.
+
+		"so every javascript file is a valid ts file."
+
+	-ts add some more features to js:
+		-static typing
+		-code completion
+		-refactoring
+		-shorthand notations
+		
+		This features help us build more robust and maintainable application
+		in less time.
+
+------------------------------------------------------------------------------------
+
+****	Statically-typed	vs	Dynamically-typed
+
+	
+	Statically-typed
+
+		-c, c++, java.
+			-we know the type of variable at compile time
+		eg.
+			int n = 10;
+			now n is variable of type int.
+			n = "abc" is nto valid
+
+
+	Dynamically-typed
+		-Javascript, Python, Ruby.
+		-type of variables is dynamic, so we can change it at runtime.
+		 type is determined and change at runtime.
+		eg. 
+			let n = 10;
+			n = "abc";
+		
+		-This gives us more flexibility, but it will also lead to some problems.
+		eg.
+			if we pass this variable to a function expecting variable. 
+			
+				Math.round(number);
+------------------------------------------------------------------------------------		
+
+	That is what solved in typescript.
+	
+	"Typescript is like Javascript with Type Checking".
+			
+	if we declare 
+		let x: number = 10
+		x = "a"; //Error in typescript
+	
+		
+	-Everything we can do with Javascript we can do with typescript.
+	
+------------------------------------------------------------------------------------		
+
+**** Drawbacks 
+
+
+	-compilation is involved as browsers don't understand typescript code.	
+
+		TypeScript -->  COMPILATION ---> JavasSript
+
+	above process is knows as 'Transpilation'.
+
+	-for Simple Projects JavaScript, 
+	 for Medium to large projects TypeScript is Recommended to use.	
+	 
+============================================================================================
+
+*****   SetUp Development Environment. *****
+  
+  -We'll use npm to install Typescript compiler.
+	
+	thus first intall node.
+	
+	-cmd to install ts compiler globally:
+		
+			"npm i -g typescript"
+		
+	-check version of ts compiler installed:
+		
+			"tsc -v"
+		
+	-create file say named "index.ts"
+
+	-to compile it 
+		
+			"node index.ts"
+			
+		after compilation ".js" file will be generated.
+		
+--------------------------------------------------------------------------------------		
+Es i.e ecma script is 'specification' and 
+	JavaScript is 'implementation' of that specification.
+--------------------------------------------------------------------------------------		
+============================================================================================
+
+**** Configuring the Typescript Compiler ****
+
+	Let's create configuration file for typescript compiler.
+	
+	-> in terminal type:
+	
+		"tsc --init"
+	
+	-> now "tsconfig.json" file will be generated check in file explorer in vs code.
+
+
+-> tsconfig file :
+
+	tsconfig file contain :
+		-most of its code it default commented.
+		-target : "es2016" -indicate version of js ts file will generate. 
+					we can chnage this value.
+		-module : "commonjs"
+		-"outDir": "./dist"
+		-"removeComments": true,
+		-"noEmitOnError": true,
+
+->in terminal, simply type.
+
+	"tsc"
+
+	-this will compile all ts files in this project.
+
+--------------------------------------------------------------------------------------		
+============================================================================================
+
+**** debugging TypeScript Applications ****
+
+->in tsconfig file enable
+	"sourceMap": true,
+
+	-sourceMap is a file that specifies how each line of our typescript code
+	maps to the generated 
+	
+->now compile our code once again: 
+	"tsc"
+
+->in src folder 
+	index.js.map is generated.
+--------------------------------------------------------------------------------------		
+to search :
+
+ecma script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
