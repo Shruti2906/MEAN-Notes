@@ -508,7 +508,14 @@ NOTE: but we have to carefull for using this.
 
 	-now we can create as many objects as we want of type Employee.
 
- 
+==========================
+
+###  The Type "Union"
+	
+	function kgToLbs
+
+
+
 ------------------------------------------------------------------------------------------		
 to search :
 
