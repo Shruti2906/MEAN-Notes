@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js in 1 shot</title>
+
+</head>
+<body>
+
+    <button onclick="myFun()">click me</button>
+    <button onmouseleave="myFun()">Hover and Leave</button>
+    <button onmouseover="myFun()">Just Hover</button>
+    <br><br>
+    <form name="example">
+        <input type="text" name="calculator" value="Enter Expression to calculate">
+        Answer<input type="text" name="ans">
+        <button onclick="cal()">GetAns</button>
+
+    </form><br>
+    <button onclick="gotoYt()">goto Location</button><br><br>
+    <button onclick="confirmcall()">Confirm Dialog Box</button><br><br>
+    <button onclick="promptcall()">prompt Dialog Box</button><br><br>
+
+    <form name="myForm" onsubmit="return validation()">
+        <input type="text" value="" id="user"><span id="username"></span>
+       
+        <input type="submit">
+    </form><br>
+
+     <script>
+        //alert('welcome to first js file')
+        
+        //variables
+        
+        var a = "10";
+        
+        var b = 10;
+        var c = a+b; 
+        var d = a++
+        var e = a==b;   //'==' check only for value not type
+                        //'===' check for both value and type of data(value).
+        document.write('welcome to first js file : ',c)
+            //Documents represents whole page shown in browser window.
+        document.write("<br>");     
+        document.write(d)
+        document.write("<br>");
+        document.write(e);
+        document.write("<br>");
+
+        //conditionals
+        if(a>b)    {
+            document.write("a>b<br>");
+        }
+        else if(b>a){
+            document.write("b>a<br>");
+        }
+        else{
+            document.write("a===b<br>");
+        }
+        
+        a = '10';
+        switch(a){
+            case '10' : document.write("case string 10\n<br>");
+                break;
+            case 10 : document.write("case number 10\n<br>");
+                break;
+            default:document.write("case default \n<br>");
+        }
+
+    //Loops
+        document.write("<br><br>Loops: <br>");
+        count = 1;
+        while(count<=5){
+            document.write("while loop this is.!!<br>");
+            count++;
+        }
+        
+        document.write("<br>");
+        count = 1;
+        do{
+            document.write("do-while loop this is.!!<br>");
+            count++;
+        }while(count<=5);
+        
+        document.write("<br>");
+        for(var i=1; i<=count; i++){
+            document.write("for loop this is.!!<br>");
+        }
+    //Arrays
+
+        document.write("<br><br>Arrays: <br>");
+        //way 1
+        var arrays1 = new Array;
+        arrays1[0] = "a";
+        arrays1[1] = "b";
+        document.write("<br>",arrays1[0],arrays1[1],"<br>");
+        document.write("<br>",arrays1)
+
+        //way 2
+        var arrays2 = new Array("z", "y", 'z', 1, 25.67);
+        document.write("<br>",arrays2)
+
+        //way 3
+        var arrays3 = ["tony", "ronny"];
+        document.write("<br>",arrays3)
+
+        var arrays4 = arrays2.concat(arrays3);
+        document.write("<br>",arrays4)
+
+        arrays4.sort();
+        document.write("<br>sort according to ascii value : ",arrays4)
+       
+       
+    //Functions   
+        document.write("<br><br>Functions : <br>");
+        function sum(a, b){
+            // var a = 10;
+            // var b = 20
+            document.write("sum called : ");
+            return a+b;
+        }
+        add = sum(10, 20);
+        document.write(add);
+        
+
+    //Strings        
+        document.write("<br><br>String : <br>");
+        var str = "hello";
+        document.write("<br>",str.length);
+        document.write("<br>",str.indexOf('p'));
+
+
+    //Events
+        document.write("<br><br>Events : <br>");
+        function myFun(){
+            document.write("welcome on click");
+        }
+
+        function cal(){
+            document.example.ans.value=eval(document.example.calculator.value);
+        }
+        
+        function gotoYt(){
+            window.location = "https://www.youtube.com/watch?v=PODgPW-hbfU&t=12s";
+        }
+
+
+    //Dialog Box
+        document.write("<br><br>Dialog Boxes : 1)alert, 2)confirm, 3)prompt <br>");
+        function confirmcall(){
+            var ans = confirm("you want to see website please click Ok");
+            if(ans){
+               // alert('welcome to website');
+                window.location = "https://www.youtube.com/watch?v=PODgPW-hbfU&t=12s";
+            }
+            else{
+                alert("sorry you didn't click ok button");
+            }
+        }
+
+        function promptcall(){
+            var str = prompt("Hi Please Enter your name : ", "")
+            alert("Welcome "+str)
+        }
+
+    
+
+     //Dialog Box
+        document.write("<br><br>Math Object : <br>");
+
+        var a = Math.floor(10.99);
+        document.write(a,"<br>");
+        document.write(Math.min(10, 30 , 20, 1),"<br>");
+        document.write(Math.max(10, 30 , 20, 1),"<br>");
+        document.write(Math.pow(4, 2),"<br>");
+        document.write(Math.sqrt(16),"<br>");
+        document.write("random : ",Math.random(),"<br>");
+        
+    
+    //Date
+        document.write("<br><br>Date : <br>");
+
+        //document.write(Date(),"<br>");
+        var dt = new Date();
+        document.write(dt, "<br>");
+        document.write(dt.getDay(), "<br>");//sunday 0, monsay 1 so on...
+        document.write(dt.getHours(), "<br>");
+        document.write(dt.getFullYear(), "<br>");
+        document.write("time since 1 Jan, 19070 : ",dt.getTime(), "<br>");//time since 1 Jan, 1970
+
+        var mydt = new Date("apr 04, 2023");
+        document.write(mydt, "<br>");
+        mydt.setDate(25);
+        document.write(mydt,"<br>");
+
+
+
+    //Date
+        document.write("<br><br>DOM : <br>");
+        function validation(){
+         
+            var user1 = document.getElementById('user').value;
+            var user2 = document.getElementsByClassName('user2');
+            var user3 = document.getElementsByName('user3');
+
+            if(1){
+                document.getElementById("username").innerHTML="<h1>**please fill details</h1>";
+                return false;
+            }
+
+        }
+
+        document.write("<br><br>Thank You..!!");
+
+    </script>
+
+</body>
+</html>
+
