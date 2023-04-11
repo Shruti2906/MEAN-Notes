@@ -1,0 +1,280 @@
+Install VS Code -> 
+	goto->https://code.visualstudio.com/
+	->download for windows./windows User Installer(this will run indepedently carry the latest update)
+
+===============================================================================
+
+UI Of VS Code
+
+after installation open vs code.
+->left most bar is "activity bar"
+->then we have "side bar" which contains the different views.
+->then we have the "main editor area" to edit your files.
+->usually in the downside we have "panel"
+	 which has different panels for output, debug,integrated terminal, etc
+->blue colored bar at botton is "status bar"
+	which gives the info about opened project and files you edit.
+
+===============================================================================
+
+CommadLine
+
+	vs code has a powerfull cmd-line interface or cli to help you costomize how
+	you launch thr editor for your specific	scenarios.
+
+	when you install vs Code it is added to your environment path. 
+	so we can open vs code from cmd prompt by just typing "code ." & press enter.
+
+->code
+	-it opens the instance of vs code from where you left off in the last session.
+
+-------------------
+
+->code -n
+	-to open new instance of vs code.(code -n)	
+-------------------
+
+->"code ."
+	-to open vs code in current directory, right where you left off in last session.
+
+---------------------
+
+->code --goto package.json:10:5
+
+	-you know the file you want to open along with the line no and column no.
+	line no 10, column no 5.
+---------------------
+
+->code --help
+	-open multiple options for troubleshooting etc.
+
+===============================================================================
+
+	from the command palette you have access to all of the functionality of 
+	vs code including keyboard shortcuts for the most common options such as
+	-execute editor commands
+	-open files
+	-search for symbols
+	
+->ctrl+p   then type file name
+------------------
+
+->ctrl+p+p
+	
+	-to navigate bwetween two files 
+	open two files and press ctrl+p+p and let go off the keys.	
+
+-----------------
+->ctrl+shift+tab
+	-used for file navigation.(not that usefull)
+-------------------
+
+->ctrl+p and type @
+	
+	-to navigate to different symbols in file.
+	-keyboard shortcut is "ctrl+shift+o"
+
+   * too usefull
+
+	-ctrl+p type @:
+		-to group (methods, variables etc)	
+----------------------
+
+->#
+	-to navigate to symbol in workspace not just in file.
+
+->ctrl+p type # symbol
+	-symbol could be variable name.
+----------------------
+
+->place cursor over (&click there) say function & press f12
+	-this will open the defination
+
+    *same as ctrl and click.
+
+----------------------
+
+->ctrl+P type :10
+	
+	-to navigate to line no
+	-10 here is line no.
+->ctrl+G
+	-is the keyboard shortcut for the same.
+
+----------------------
+->ctrl+p type <
+
+	-this will bring you directly to editor commands along with shortcuts.
+	-This is like central part of the command palette from where we can perform 100s of tasks.
+   eg.
+	to change color themes
+	ctrl+shift+p (or ctrl+p type >)
+	type themes
+	select color theme
+----------------------
+
+	to find all possible options for palette.
+
+->ctrl+p type ? 
+========================================================================================
+
+Editing tips and Tricks
+
+
+ Multicursor
+
+->hold down alt & select where to change
+	place your cursor at the position you want to edit,
+	next hold down the alt key(don't up the key),
+	then click on different positions in the file where you want to edit.
+	now, we can easily edit all selected values simultaneously.
+
+	simply click outside to remove the multicursors.
+
+--------------------------------
+
+->ctrl+shift+l
+
+	-to edit the common occurrance.
+	-place the cursor on the word(which you want to edit) (now all the occuranecs will be highlighted)
+	press ctrl+shift+l
+	-now multicursor will be enabled for all the occurrances of the word in file.
+
+
+  sometimes we may want to select only few occurrances not all.
+
+	select word press ctrl+d to select next occurance only,
+	again ctrl+d to next occurrence..so on..
+----------------------------------
+
+multicursor also supports the "find & replace" functionality.
+
+->select word/ctrl+d & press "ctrl+f2"
+
+----------------------------------
+
+with multicursors we also have column selection
+
+  *didn't work
+
+-----------------------------------
+
+Undoing the corsor position
+
+ **Too usefull
+
+	say we a huge file with lots of lines of code, you want to edit a line , 
+	so place the cursor at that exact position, 
+	now you want to quickly take a look at existing code to see ow it's done,
+	& you start scrolling, 
+	and accidentally click.!
+	now your cursor position is lost. now press
+
+->ctrl+U
+	
+	& now you are navigated back to the previous cursor position.
+
+------------------------------------
+
+by default when you press ctrl+c vs code automatically copies the entire current line.
+
+so you don't have to select the line before copying.
+
+------------------------------------
+copy paste
+
+-> alt+shift+down arrow, alt+sift+up arrow.
+
+	-it will automatically copy entire line and paste up/down.
+
+--------------------------------------
+
+Moving lines of codes around the file.
+
+->alt+down/up
+	
+	-place the cursor at start or end or anywhere in line & press alt+up/down.
+
+	- you can do the same with block of code.
+
+---------------------------------------
+
+format code
+
+select block of code you want to format. & press-
+
+->ctrl+K and ctrl+f
+
+to format whole document
+
+->alt+shift+f
+
+--------------------------------------
+
+** NOTE: ctrl+alt+up/down will move taskbar position.
+
+====================================================================================================
+
+Intellisense 
+
+	vs code offers code completion.
+	when vs code knows possible solutions intllisense suggestions will popup automatiaclly.
+
+	we can amnually trigger it with ctrl+space;
+
+for HTML, CSS
+	-we have emmet preview.
+	eg. 
+	.test{
+		//press ctrl+space here
+	}
+
+->hover
+	-we can get information about property/function etc on hovering on it.
+
+->crtl+hover
+	
+	-give preview of where it is defined.	
+
+->ctrl+click
+	-it will give to the definition.
+
+->right click->peek Definition
+
+	-if we don't want to be navigated away from the file, 
+	we can peek at the definition.
+
+->right click->find all references
+
+	-if we want to find all references.
+ 
+================================================================================
+
+Customization
+
+	change color theme
+
+->ctrl+p (open cmd palette).
+	->type ">"
+		->type "themes"
+			->select "color themes"
+				->select theme.
+
+	if you hover on them it gives the preview of what the icons are goint to look like.
+
+----------------------------------
+
+	change file icon theme
+
+->ctrl+p (open cmd palette).
+	->type ">"
+		->type "themes"
+			->select "file icon themes"
+				->select theme.
+
+----------------------------------
+
+font literatures
+
+install the fira our code font enable font literatures
+================================================================================
