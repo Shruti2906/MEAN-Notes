@@ -1,0 +1,579 @@
+Introduction:
+
+	What and Why?
+		-is a framework used to build client side application.
+		-great for SPAs(single page applications).
+			where part of view get refreshed asynchronously without
+			having to reload the entire page.
+
+		-by design angular supports modular approach.,
+		-by using component(which is feature of angular) we can reuse a lot of our code.
+		-angular has a lot of inbuilt capabilities such as validation, routing which makes development
+ 		 quicker and easier.
+		-makes it possible to write unit testable and easily maintainable code.
+		-angular is a product from google team and makes use of typescript language from microsoft.
+		   so we can say angular is here to stay.
+
+	History of Angualr:
+		2010:Angular JS
+		2016: Angualar version 2
+		2016: Angualar version 4
+		2017: Angualar version 5
+
+	all versions will be backward compatible.
+	concepts in angular are not going to change with every version change.
+
+	can watch videos about the features that added/chnaged according to verion.
+
+==============================================================================================================================
+
+Development Environment
+
+	to start building angular apps we need:
+
+	->Node
+	->Npm
+	->Angular CLI
+	->Text Editor - VS Code
+
+->install node
+	when you install node, npm will be automatically installed.
+
+	->node -v
+	->npm -v
+
+->install Angular CLI
+
+	-it is commandline interface for angular.
+	-it allows to generate building blocks of your angular application by
+		just typing out the commands.
+	-it makes development easier and quicker.
+
+	->ng version
+
+		-to check version of angular cli.
+
+	->ng --help
+		-to get details of all commands.
+
+
+	-Angular CLI is a command line interface tool, which means it requires a 
+	 command line or terminal interface to execute its commands.
+
+	 The purpose of Angular CLI is to simplify the process of creating, 
+	 developing, and building Angular applications by providing a set of pre-built commands
+	 that you can execute from a command prompt or terminal window. These commands automate 
+	 many of the tasks involved in Angular development, such as creating a new project, generating 
+	 components, services, and other Angular artifacts, running tests, and building the application for production.
+
+	 While there are graphical user interfaces (GUIs) available for some Angular development tasks, 
+	 such as code editors with built-in Angular support, these GUIs still rely on the Angular CLI 
+	 commands under the hood. Therefore, to use Angular CLI, you need to be comfortable using a command line or terminal interface.
+
+	Angular Console: 
+		Angular Console is a desktop application that provides a graphical user interface
+		 for working with Angular CLI. It allows you to generate code, run commands, and 
+		 manage dependencies without using the command line interface.
+
+==============================================================================================================================
+
+Hello World App
+
+
+	->ng new Hello_World
+		-Hello_World folder is created(angular application).
+	->cd Hello_World
+	->ng serve
+		-open browser and type localhost:4200
+
+  Flow of Execution of any basic Angular Application.
+
+	modules:
+		-angular apps are modular in nature.
+		-every module represents a feature area in application.
+		-angular module is just lines of codes hat can be imported or exported.
+		-every angular app has atleast one module called Root Module/app module
+		-each module contains of COMPONENTS and SERVICES.
+
+		-services control buisness logic of module.
+
+
+	Components:
+		-component conatins portion of view in application.
+		-every angular app has atleast one component called root component/AppComponent.
+
+		-each component will has an html template to represent view in browser.
+			and a class that controls the buisness logic of component.
+
+
+	Architecture :
+		Angular app - one or more modules.
+		Module - one or more components and services.
+		Components - HTML + class
+		Service - Buisness logic
+		
+		modules interact(import and export components as and when required) and ultimately render the view in the browser.
+
+app.module.ts - root module of application
+app.component.ts - root component of application.
+
+
+----------------
+	when we ng serve execution comes to main.ts file.
+
+ 	main.ts	- this file is the entry point to our application.
+		
+		->in maint.ts file we bootstrap or kickstart the app module .
+		
+		->in module.ts file we bootstrap or kickstart the app component.
+
+		->app component has 2 things html and ts file.
+
+
+==============================================================================================================================
+
+Component :
+
+	-component is made up of 3 parts 
+	1)template - represents view, created using html.
+	2)Class - code that supports the view, created using ts.
+
+		-class contains data properties and methods.
+		
+		-metadata -  angular needs this information to decide that this class
+			     is angular component or just a normal class.
+
+			  - metadata is defined using a decorator.
+
+
+
+	Component Decorator -
+			is a function that attaches to th class right below it.
+
+		eg.	
+			@Component({
+  				selector: 'app-root',
+				templateUrl: './app.component.html',
+	  			styleUrls: ['./app.component.css']
+			})
+
+			-this indicates this is a component not a simple class.
+
+	to create a component:
+		->ng g c ComponentName
+
+		-within app folder, folder named ComponentName will be created.
+		this folder will have 4 file html, css ts, spec.ts
+		
+		-in app.module.ts we import this component and then add it to our declaration array.
+		
+
+	to include this component in our html, we need to add a custom html tag that
+	represents the selector.
+	->in root component html file(i.e app.component.html)
+	add tag <root-componentName>
+-----------
+	Selector: 
+
+	There are 3 ways to specify the selector.
+	1] specify the selector and use it as a custome html tag.
+		eg.  selector: 'app-test',
+			<app-test></app-test>
+
+	2] specify the selector and use it as a class.
+		eg.  selector: '.app-test',
+			<div class="app-test"></div>
+
+	3] specify the selector and use it as a attribute.
+		eg.  selector: '[app-test]',
+			<div app-test id="div1"></div>
+--------
+	TemplateURL
+		->we can use here template file.
+		->we can also define it inline
+		i.e we can define html inside backticks(``)here itself. 	
+		
+		@Component({
+		  selector: 'app-root',
+		  templateUrl: './app.component.html',
+		  styleUrls: ['./app.component.css']
+		})
+		
+		@Component({
+		  selector: 'app-root',
+		  template: `<h1>hi</h1>
+				<h2>Hello</h2>
+			    `,
+		  styleUrls: ['./app.component.css']
+		})
+
+--------
+	styleURL
+		->same as template we can use component.css file here
+		->or we can define css inline
+		--------
+	TemplateURL
+		@Component({
+		  selector: 'app-root',
+		  templateUrl: './app.component.html',
+		  styleUrls: ['./app.component.css']
+		})
+		@Component({
+		  selector: 'app-root',
+		  templateUrl: './app.component.html',
+		  styles: [`
+				h1{
+					color:red;
+				}	
+		   `]
+		})
+==============================================================================================================================
+
+Component : 
+	component consists of 3 parts
+	-Template : view html
+	-Class : code, ts, data & methods.
+	-Metadata : defined using decorator,
+			decorator is a function that provides info about the class
+			attached to it.
+
+==============================================================================================================================
+
+Interpolation :
+
+	-{{}} variables can be written in these double curly braces.
+
+	-{{}} can be used to print variable value, we can use Js inbuilt functions,
+		we can call methods defined in component class.
+
+	->with interpolation we can bind data from the class to the template.
+	and the syntax is {{property/expression}}
+ 
+==============================================================================================================================
+
+ Property Binding : 
+
+	* Attribute VS Property
+
+		-Attributes and properties are not the same.
+		-Attributes - are defined by the HTML
+		 Properties - defined by DOM.
+		-Attributes initialize dom property and then they are done.
+		Attributes value cannot chnage once they are initialized.
+		-Property values however can change.
+
+	eg.
+
+	<input type="text" value="somevalue">
+
+	in browser console type
+	 		 $0.getAttribute("value")
+		 result: 'somevalue'
+
+			 $0.value
+		result:	 'somevalue'
+
+	if we type say "shruti"
+			in browser console 
+	 		 $0.getAttribute("value")
+		 result: 'somevalue'
+
+			 $0.value
+		result:	 'shruti'
+
+	** with property binding in angular we are binding with the property not with the attribute.
+	
+	eg.
+	-> here we are binding id property with myId.
+
+	html template
+		<input [id]="myId"  type="text" value="somevalue">	
+
+	   component class
+		public myId = "testId";
+
+	
+	-> same thing we can do using interpolation.
+
+		html template
+			<input id="{{myId}}"  type="text" value="somevalue">	
+	
+		component class
+			public myId = "testId";
+
+  ** NOTE:  There is limitaion to interpolation 
+		it can only work with string values.
+		there are html properties that are boolean properties.
+		eg.
+			disabled attribute.
+
+		* alternate syntax of property binding.
+	    <input id="{{myId}}"  type="text" value="somevalue" [disabled]="false">
+            <input id="{{myId}}"  type="text" value="somevalue" bind.disabled="false">
+		
+==============================================================================================================================
+
+ Class Binding : 
+	1] we can use simply class same:
+		@Component({
+		  selector: 'app-test',
+		  template: `
+		            <h2 class="text-success">Shruti here</h2>
+			    `,
+		  styles: [`
+        		   .text-success{
+        		      color: green;
+        	   	     }
+  			`]
+		  })
+		export class TestComponent {
+		}
+		
+	
+	2] We can also use like this : 
+		<h2 [class]="successClass">Shruti here</h2>
+
+		we can use simply class same:
+		@Component({
+		  selector: 'app-test',
+		  template: `
+			<h2 [class]="successClass">Shruti here</h2>
+			    `,
+		  styles: [`
+        		   .text-success{
+        		      color: green;
+        	   	     }
+  			`]
+		  })
+		export class TestComponent {
+			public successClass = "text-success";
+		}
+
+	3] OR We can use both together. 
+		<h2 class="text-bold" [class]="successClass">Shruti here</h2>
+	    eg.
+		we can use simply class same:
+		@Component({
+		  selector: 'app-test',
+		  template: `
+			<h2 class="text-bold" [class]="successClass">Shruti here</h2>
+			    `,
+		  styles: [`
+        		   .text-success{
+        		      color: green;
+        	   	     }
+			   .text-bold{
+		              font-style: italic;
+             	             }
+  			`]
+		  })
+		export class TestComponent {
+			public successClass = "text-success";
+		}
+
+		-properties of both class will be applied, if same properties are there in both classes,
+		  then it will be applied on order left to right. (i.e property in left will override (same property in)others to right)
+
+
+	4] Apply the class Based on an expression that evalutes to true or false.
+	eg.
+		we can use simply class same:
+		@Component({
+		  selector: 'app-test',
+		  template: `
+			<h2 [class.text-danger]="hasError">Shruti here</h2>
+			    `,
+		  styles: [`
+        		   .text-danger{
+              			color:red;
+           		    }
+  			`]
+		  })
+		export class TestComponent {
+			public hasError = true;
+		}
+
+	-if hasError is true class will be applied, if it is set to false class will not be applied.  		
+
+
+
+	5] When we want to apply multiple classes based on condition(true ot false)
+		we use ngClass directive.
+			<h2 [ngClass]="mesaageClasses"]>Shruti here</h2>
+
+	eg.
+	we can use simply class same:
+		
+		@Component({
+		  selector: 'app-test',
+		  template: `
+			<h2 [ngClass]="mesaageClasses"]>Shruti here</h2>
+			    `,
+		  styles: [`
+        		   .text-success{
+		              color: green;
+        		   }		
+       			    .text-bold{
+        		      font-style: italic;
+        		   }
+       			   .text-danger{
+       			       color:red;
+       			    }
+  		    `]
+		  })
+		export class TestComponent {
+			public hasError = true;
+
+			public mesaageClasses = {
+				"text-success": !this.hasError,
+				"text-danger": false,
+				"text-bold": true
+  			}
+		}
+==============================================================================================================================
+
+ Style Binding : 
+
+	use to apply inline styles to html elements.
+
+	1] If we want to bind to color css property.
+	
+		<h2 [style.color]="'green'"]>Shruti here</h2>
+
+		-we assign the color as the string value.
+
+	2] It is possible to use conditional operator to assign value to css property.
+
+		<h2 [style.color]="hasError ? 'red':'green'"]>Shruti here</h2>
+
+	3]
+                <h2 [style.color]="ColorValue"]>Shruti here</h2>
+		public ColorValue = "orange";
+
+==============================================================================================================================
+
+ Event Binding : 
+
+	-to respond to user events such as mouse clicks or keyboard events,
+		we need the data binding/ data flow from template to component.
+
+	-so, to  capture events we make use of event bindings.
+
+	@Component({
+		  selector: 'app-test',
+		  template: `
+		      <button (onclick)="onClick()">Greet</button>			    `,
+		  styles: [`
+        		 
+  		    `]
+		  })
+		export class TestComponent {
+			onClick() {
+   				console.log('Hello');
+  			}
+		}
+
+	-EventHandler onClick() will be called when user clicks the button.
+
+--------
+	$event:
+
+		-Sometimes we may want the information about the event itself.
+
+	@Component({
+		  selector: 'app-test',
+		  template: `
+			<button (click)="onClick($event)">Greet2</button>
+			    `,
+		  styles: [`
+        		 
+  		    `]
+		  })
+		export class TestComponent {
+			onClick(event: any) {
+   			console.log(event);
+			console.log(event.type);
+  			}
+		}
+	
+	     - $event is a special variable in angular, it gives all the information about the
+              dom event that was raised.
+----------
+
+	<button (click)="name='welcome'">Greet3</button>
+          {{name}}
+
+        public name = "";
+
+==============================================================================================================================
+
+ Template Reference Variable : 
+
+	-to easily access dom elements and their properties angular provides us with template reference variables.
+
+	<input #myInput type="text">
+          <button (click)="logMsg(myInput.value)">Greet3</button>
+	
+	logMsg(myInput: any){
+		console.log(myInput);
+	}
+
+	-when i click on Greet3 button logMsg() will be called and value entered in input field will be passed to it.	
+
+	if i whole reference instead of value:
+	eg.
+
+	  <input #myInput type="text">
+          <button (click)="logMsg(myInput)">Greet3</button>
+
+	  logMsg(myInput: any){
+		console.log(myInput);
+	  }
+  output:
+	<input type="text">
+
+==============================================================================================================================
+
+ Two Way binding : 
+		-when we work with form input it is essential that your model
+		and the view are always in sync otherwise the data might not be consistent.
+
+		-eg.
+			login form has username and password and corresponding component class
+			has the corresponding properties username and password.
+
+			whenever user updates these input controls your model or properties 
+			should automatically receives those values.
+		
+			and when there is an update in the model or property value your view should	
+			automatically reflet the updated values.
+
+
+
+		using Property Binding and Event Binding we can acheive this.	
+
+		But, angular provides us with cool feature which is two-way binding
+
+		2-Way binding allows us to update property and at the same time display
+		the value for that property.
+
+		-For 2-Way Binding angular provides another directive i.e the 
+		"ng model" directive
+
+		eg.
+			<input [(ngModel)]="name" type="text">
+
+		    -[()] to remember this remember : 'banana in box'.
+
+			-here we have [] for property binding. which is data flow from class to template.
+			and
+			-() for event binding, so data flow from template to class.
+
+
+		     -need to import FormsModule to use ng Directive.
+
+
+
+
+
+
