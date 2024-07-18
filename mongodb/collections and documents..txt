@@ -1,0 +1,78 @@
+collections have documents.
+
+eg.
+
+User Collection has documents-
+	{
+		id: '1',
+		name: 'abcc'
+	}
+	{
+		id: '2',
+		name: 'xyz'
+	}
+	{
+		id: '3',
+		name: 'www'
+	}
+
+documents themselves represent individual records in a specific collection.
+eg. inside user collection we store a lot of user documents & each one represents a single user.
+
+The way the data is structured inside the document looks like a json object but actually its being stored as something called 'bson'.
+which is just 'Binary JSON'
+
+
+but when we fetch the document from the collection the json objects are ultimately what we get.
+
+** Documents can also be nested 
+	eg.
+		{
+			id: '1',
+			name: 'abcc',
+			address:{
+				city: 'pune',
+				state: 'MH'
+			}
+		}
+
+
+** GUI tools
+
+** a 'Connection String' is a special mongodb url that we use to connect to a mongodb cluster.
+
+	if you want to use a mongodb service like atlas, it allows you to make your cluster alive & have your db alive. then you would just
+	paste the mongodb connection string to connect to the cluster.
+
+	on localhost, we can work on the mongodb service installed on our computer. to connect to the mongodb service installed on our local computer, we simply need to click connect in mongodb compass without any connection string.
+
+** Mongodb Commands
+	we can use integrated shell in mongodb compass which is same as running mongodb shell in windows commandline.
+
+	show dbs -> to show databases
+
+	use dbName -> to switch to database
+
+	show collections -> to see the list of collections
+
+     
+	var name='shruti' -> to create varianble
+
+	name ->press enter, to get value of variable name
+
+	
+	help -> to get help for commands
+
+	exit -> to exit from the shell
+
+ to add collections
+	
+	-> need to refer to the collection to add the document.
+	eg.
+		db.Users  -> Users is collection in current db.
+
+		db.users.insertOne({name:"john", city:'pune'})	->insert one record in users collection. if collection does not exist, new collection with name users will be created and this document will be added into it.
+
+
+
+	
