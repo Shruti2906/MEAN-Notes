@@ -65,7 +65,7 @@ but when we fetch the document from the collection the json objects are ultimate
 
 	exit -> to exit from the shell
 
- to add collections
+--- to add collections & documents
 	
 	-> need to refer to the collection to add the document.
 	eg.
@@ -73,6 +73,478 @@ but when we fetch the document from the collection the json objects are ultimate
 
 		db.users.insertOne({name:"john", city:'pune'})	->insert one record in users collection. if collection does not exist, new collection with name users will be created and this document will be added into it.
 
+---- To Fetch the records
+
+	db.Books.find()   -> it will return the first 25 records in Books collection.
+	
+	//NOTE: find() will return only first 20 records from the collection. 
+		//and when we use command->
+		
+		it    //now it will fetch next 20 records. (It for iterate)
+
+		it	//it will fetch next 20 and so on...
+	
+	--Filters can be used to fetch specific records.
+		db.Books.find({name:"21"})	-> it will fetch the books with name "21"
+		db.Books.find({name:"21", price:"100"})
+
+
+	--to fetch only the specific fields of the records:
+		db.Books.find({name:"21"}, {price: 1, author:1})	->it will fetch only price and author fields of the records having name="21".
+		db.Books.find({name:"21"}, {_id:0})			->it will fetch all the fields except _id of the records having name="21".
+
+		db.Books.find({}, {name:1})		->it will fetch only the name field of all records.
+
+	--to find single record
+		db.Books.findOne({_id: ObjectId("6699649329405f15c8f918e8")})	->It will fetch only one record with name="21", if there exists multiple records It will fetch the first one that it will find in the db.
+
+
+--- chaining of functions
+	db.Books.find({name:"21"}).count()	->to count the records fetched
+
+	db.Books.find({name:"21"}).limit(2);	->to limit the no of documents to fetch.
+
+	db.Books.find({}).sort({title: 1})      -> title: 1 means sort in ascending order, title: -1 means sort in descending order.
+
+
+-----------------------------------------------------------------
+
+CRUD
+
+Create:
+	db.Books.insertMany([{author:"test1"},{author:"test2"}])
+	db.Books.insertOne({author: "test"})
+
+Read:
+	db.Books.find({})	-fetch all
+			-by default 20 record will be fetched, and find() method returns the cursor(pointer-using which we can iterate to all documents),
+
+	it       -		type 'it' to fetch next 20
+
+		Filters	
+			db.Books.find({Price: {$gt:20}})	
+
+			db.Books.find({}).forEach((x)=>printjson(x))
+
+			db.Books.find({}).count()
+
+			db.Books.find({}).limit(10);
+
+	NOTE: cannot use count() etc methods on findOne({name:"abc"}) because these methods can only be applied on cursor; findOne() does not return cursor
+
+Update:
+	db.Books.updateOne({author: "test1"},{$set : {author: "test"}})
+	db.Books.updateOne({author: "test"},{$set : {Pages: 20}})      -if isEligible field is not there, it will add it in matched documents
+
+Delete:
+	db.Books.deleteOne({author:"test1"})
+	db.Books.deleteMany({author:"test1"})
+
+-------------------------------------------------------------------------------------------
+
+Projection:
+	select Name from tableName;
+
+	Select Column Query in MongoDB (Projection in Mongodb)
+
+	db.Books.find({}, {author:1}) 	-only author column(i.e field) will be fetched. by default _id is inclusive
+
+	db.Books.find({}, {author:1, _id: 0})	-to exclude _id
+
+----------------------------------------------------------------
+
+Is Mongodb Schemaless
+	it is schemaless, but we should maintain the schema for our application
+
+--------------------------------------------------------------
+Data Types in mongodb
+
+
+	Text - string
+	Boolean - t/f
+	Number - Numberic
+
+	ObjectId - mongodb creates automatically
+	IsoDate	-for date
+	TimeStamp	- for miliseconds
+	Array	- 	
+	Embeded document	-	 nested documents
+
+	read about TimeStamp, converting, i etc
+--------------------------------------------------
+
+Drop database
+	db.dropDatabase();
+
+	use JustDemo
+	db.dropDatabase()
+
+	db.JustDemo.insertOne({name: "shruti"}) - it will create new db named JustDemo and new collection named JustDemo and add document with field name
+
+to delete collection
+	db.JustDemo.drop() - JustDemo is collection
+
+----------------------------------------------------------------------------------------------
+
+Options in  insertOne & insertMany()
+
+	{ordered: true} - Options
+
+----------------------------------------------------------------------
+
+Schema Validation in MongoDB
+
+	db.createCollection("nonFinction",{
+		validator:{
+			$jsonSchema:{
+				required:['name', 'price']
+			}
+		}
+	})
+
+	another example:
+
+	db.createCollection("students", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         title: "Student Object Validation",
+         required: [ "address", "major", "name", "year" ],
+         properties: {
+            name: {
+               bsonType: "string",
+               description: "'name' must be a string and is required"
+            },
+            year: {
+               bsonType: "int",
+               minimum: 2017,
+               maximum: 3017,
+               description: "'year' must be an integer in [ 2017, 3017 ] and is required"
+            },
+            gpa: {
+               bsonType: [ "double" ],
+               description: "'gpa' must be a double if the field exists"
+            }
+         }
+      }
+   }
+} )
+
+--------------------------------------------------------------------------
+
+Write Concern in mongodb
+	{ w: <value>, j: <boolean>, wtimeout: <number> }
+
+
+		wtimeout - to set time, if write operation takes more that this time specified it will be canceled
+
+		j- journal, if on operation will be a little slower. as 2 entries are being done in journal and in db
+
+		w - acknowledgement
+
+--------------------------------------------------------------
+
+Atomicity in MongoDB		
+
+	automicity is achieved on a document level
+
+
+----------------------------------------------------------------------------
+
+MongoImport in MongoDB ( Import json in MongoDB )
+
+
+-------------------------------------------------------------------
+
+Comparison operators in MongoDB in Hindi ( $eq, $ne, $lt, $gt, $lte, $gte, $in & $nin )
+
+	db.Books.find({Price: {$gte:20}})
+
+	Nested search
+
+		db.Books.find({'hobbies.Walk':true})
+-------------------------------------------------------------------
+Logical operators	
+
+	db.collectionName.find({$and: [{}, {}, {}]})
+	
+	db.Books.find({$or: [{name:"test"}, {Price: 300}]})
+
+	db.Books.find({Price: {$gt:20}, {$lt: 500}})	-	 in case of json if filters are appled on same field, it will only apply the last filter
+	
+
+-------------------------------------------------------------------
+ Understanding the $exists and $type Operators
+
+	db.Books.find({Price: {$exists: true}})
+
+-------------------------------------------------------------------
+Take Your MongoDB Queries to the Next Level with "Evaluation Operators"
+
+	$expr- Allows use of aggregation expressions within the query language.
+
+			it takes a story(expression, atihmatic exp)
+
+			-available after 3.6 version
+
+		db.collection.find({
+			$exp:{
+				//story				
+			}
+		})		
+
+		db.collection.find({
+			$exp:{
+				$gt:["$field","$field"]
+			}
+		})
+
+		db.collection.find({
+			$exp:{
+				$gt:["$price", {$avg: "$price"}]
+			}
+		})		
 
 
 	
+
+	$regex
+
+	db.Books.find({author: {$regex: /^h/i}})
+		/^A/	 - start with A
+		/A$/	 - ends with A
+		/A/		 - contains A
+		/^A$/	 - exact A
+
+
+	$text 
+		performs text search
+
+	$mod
+		db.Book.find({
+			Price: {$mod: [3, 0]}
+		})
+			//fetch documents where if price is divided by 3 it gives remainder 0.
+
+-------------------------------------------------------------------
+
+db.Books.find({publications:"techNew"})		---even if publication was string, same query would be used. mongodb is smart it understood even for publicatioons array it
+
+{
+  _id: ObjectId('66a47701153bff8cec86f0d7'),
+  author: 'author3',
+  publications: [
+    'techNew',
+    'Mc grew Hill'
+  ],
+  category: [
+    {
+      genre: 'fiction'
+    },
+    {
+      genre: 'Sci-fi'
+    }
+  ]
+}
+
+db.Books.find({"category.genre":"fiction"})
+db.Books.find({"category.genre":"fiction"}).size()
+
+db.Books.find({"category.genre":"fiction"})
+db.Books.find({category: {$size: 2}})
+
+db.Books.find({
+	$and: [
+		{category: {$exists: true}}, {$expr: {$gt:[{$size:"$category"}, 2]}}
+	]
+})
+
+
+db.Books.find({
+	"category.genre": {$in: ["fiction", "Sci-fi"]}
+})
+
+$in  		--- any of the mentioned value should match
+
+$all	  --- all of the mentioned value should match
+
+db.Books.find({"category.genre":["fiction", "Sci-fi"]})		-- it will find all values in exact order as mentioned
+
+
+
+
+db.Books.find({$and: {'category.genre':'apple'}, {'category.rating': {$gt: 15}}})	-works on whole array, even if any one object in array matches, it'll return whole array
+
+db.Books.find({category: {$eleMatch: {rating: {$gt: 1}, name:"apple"}}})
+
+
+-------------------------------------------------------------------
+
+db.Book.find().sort({Price:1})
+db.Book.find().sort({Price:1, PageNo:1})
+
+db.Book.find().sort({Price:1}).forEach((x)=>printjson(x))	--print all at once(not in batches) in json
+
+db.Book.find().sort({Price:1, PageNo:1}).skip(20)	--first 20 documents will be skipped and sorting will  be applied to after 20 documents
+
+-------------------------------------------------------------------
+
+
+db.Books.updateMany({}, {$set:{Price:1}})		--first {}->filter,  {}->what to set
+db.Books.updateMany({}, {$inc: {Price:50}})
+db.Books.updateMany({}, {$inc: {Price:-50}})
+
+update the max value
+db.Books.updateMany({}, {$max: {Price:600}})       --if existing price is 700; it won't be updated
+
+
+$mul
+
+$unset
+	db.Books.updateOne({author:"test"}, {$unset:{Price:434343}})	--price: any value
+
+$rename
+db.Books.updateOne({author:"test"}, {$rename: {Price: "SellingPrice"}})
+
+$upsert
+
+-------------------------------------------------------------------
+Indexing....
+
+	Basic search/Normal search in collection:
+					-like linear search.
+					-its called Collscan
+
+	Index and then search
+					IXscan(index Scan)
+					-it will do binary search on index.
+
+	Indexes are stored in a B-tree data structure	
+	It store:
+		-index keys
+		-pointer to documentsin the collection			
+
+	Trade-Off
+		-Storage space
+		-write performance	
+
+
+	Types
+		-single field
+		-compound
+		-text Indexes
+
+
+		db.Books.createIndex({Price:1})	--ascending
+		db.Books.createIndex({Price:-1})	--descending
+		db.Books.getIndexes()
+
+
+When not use index	
+
+
+	compound	
+		db.Books.createIndex({Price:1, author:-1})	  --here the index will be sorted by Price. in case of sameprice value, desc sorting will be done based on author name.
+		now,
+			db.Books.find({Price:200})	--indexScan will be performed
+			db.Books.find({Price:200, author:"test"})	--indexScan will be performed
+
+			db.Books.find({author:200})	--Collscan will be performed;  as sorting is done by price; so author is randomly sorted.
+
+
+			db.Books.createIndex({Price:1}, {unique:true});
+
+
+Partial Filter:
+	db.Books.createIndex({Price:1}, {partialFilterExpression:{Price: {$gt: 100}}})	--create index only on the condition matching fields 
+
+Covered query	
+		if qury is performed on the same field on which index is created and only the same is beign fetched.(only single field is bing in considered in whole query),
+			then that query is known as covered query, its very fast.
+
+		else if any other field is involed then FETCH will be used. can see in .explain("ExecutionStats")
+
+Winning Plan
+	-if there are multiple indexes aginst a single query, mongodb checks by performing operations on some documents for each index and based on performance it sets Winning plan (winning index). 
+	and stores it in catche.
+
+	-catche is reset after	
+		-mongo server restart
+		-..
+		..
+
+Multi-Key Index:
+	-index on array	
+		index willl be created for each eleemnt of array
+
+Text index:
+	only 1 text index per collection
+	tokenization & stemming
+
+	db.Books.createIndex({author:"text"})
+	db.Books.createIndex({author:"text", Price:"text"})
+	
+
+
+---------------------------------------------------------------------------------
+
+aggregation
+
+	-pipeline operation
+
+	-it groups the data from multiple documents into a single document based on the specified expression
+
+
+db.collection.aggregate(pipeline, options)
+
+	pipeline-array of operations
+
+	db.Books.aggregate({$match: {Price:500}})
+
+	db.Books.aggregate([{$group:{ _id: "$Price"}}])  
+
+	$group:
+	{_id: expression,
+	field1: expression,
+	field2: expression,..
+	}
+
+
+db.Books.aggregate([ {$group: {_id:"$Price", columnToAddinGroup:{$push: "$author"}}} ])
+
+db.Books.aggregate([{$group: {_id: "$author", seePrice:{$push: "$Price"}, author:{$push:"$author"}}}])
+
+db.Books.aggregate([{$group:{_id: "$Price", col:{$push: "$$ROOT"}}}])
+	$$ROOT - specifies whole document
+
+
+db.Books.aggregate([
+	{$match:{author:"test"}},
+
+	{$group: {_id:"$Price", author:{$push:"$author"}, CountOfBooksInThisPrice:{$sum: 1}}}
+
+])	
+
+here sum will give count of documents for each group
+
+------------------------------------------------------------------------
+
+db.Books.aggregate([
+	{$match: {Price:3000}},
+
+	{$group: {_id: "$Price", countOfbooksInEachGroup:{$sum: 1}}},
+
+	{$sort: {countOfbooksInEachGroup: -1}}
+])
+
+
+$sort-to sort groups based on given field value
+------------------------------------------------------------------------
+importing json doc in mongodb using mongoose
+	
+
+
+
+
+
+
